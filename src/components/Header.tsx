@@ -11,7 +11,7 @@ const nav: { to: Route; label: string }[] = [
 export function Header({ route }: { route: Route }) {
   return (
     <header className="px-6 pt-10 sm:px-12">
-      <Link to="/" className="mx-auto block w-28 text-ink/80" aria-label="home">
+      <Link to="/" className="mx-auto block w-32 text-ink" aria-label="home">
         <Logo />
       </Link>
       <div className="mt-10 flex flex-wrap items-center justify-between gap-4">

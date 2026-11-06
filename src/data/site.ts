@@ -3,8 +3,8 @@
 
 export const site = {
   name: 'Brigid Carney',
-  tagline: 'free-spirited & open-minded creative soul',
-  location: 'baltimore, md',
+  tagline: 'pilates instructor, writer, violinist & photographer',
+  experienceTagline: 'a free-spirited soul, rooted in ritual',
   email: 'brigid@brigidcarney.com',
   linkedin: 'https://www.linkedin.com/in/brigidcarney/',
   instagram: '',
@@ -14,35 +14,35 @@ export const site = {
 export type ExperienceSection = {
   title: string
   body: string[]
-  tone: 'slate' | 'taupe' | 'dusk'
+  tone: 'slate' | 'taupe' | 'moss'
   align: 'left' | 'right'
   cta?: { label: string; href: string }
 }
 
 export const experience: ExperienceSection[] = [
   {
-    title: 'Copywriting',
-    tone: 'slate',
+    title: 'copywriting',
+    tone: 'taupe',
     align: 'left',
     body: [
-      'Expressing myself comes naturally. Maybe it’s the cancer sun sign in me, or the whole “middle child” thing. But all I know is that, whatever outlet I pick up, I find so much love in it.',
-      'As a 4 year old, I learned how to sing with my fingers. This foundation in music and the violin spread quickly and rooted itself deeply into all aspects of my life. The more I played, the more rhythm I noticed around me: in nature, in emotions, in all words, written and spoken.',
-      'And then, I started to listen. Nature’s melodies taught me to ebb and flow with the rhythm of my mind. I strung my words together like notes on a page, building shapes and telling stories. The sounds of birds singing early in the morning, or rain falling slowly outside my open window, or the breeze softly whispering past my cheeks all teach me something new about myself and life every day.',
+      'Expression comes naturally to me. Maybe it’s the cancer sun sign in me, or the whole “middle child” thing. All I know is that, every outlet I pick up, I pour so much love into it.',
+      'As a 4 year old, I learned how to sing with my fingers. This foundation in playing the violin rooted itself deeply into all aspects of my life. The more I played, the more rhythm I noticed around me: in nature, in emotions and in all words, written and spoken.',
+      'And then, I started to listen. Life’s melodies taught me to ebb and flow with the rhythm of my mind. I strung my words together like notes on a page, building shapes and telling stories. The sounds of birds singing early in the morning, or rain falling slowly outside my open window, or the breeze softly whispering past my cheeks guide me daily.',
       'Writing not only expresses how I think and what I feel, but solidifies the innate dance that’s going on in between the past, present and future: what’s born into all of us.',
       'I hope you enjoy my little symphonies of words.',
     ],
-    cta: { label: 'resume', href: site.resume },
+    cta: { label: 'see resume', href: site.resume },
   },
   {
-    title: 'Pilates',
-    tone: 'taupe',
+    title: 'pilates',
+    tone: 'slate',
     align: 'right',
     body: ['Paragraph about Pilates experience and teaching.'],
     cta: { label: 'my instagram', href: site.instagram },
   },
   {
-    title: 'Photography',
-    tone: 'dusk',
+    title: 'photography',
+    tone: 'moss',
     align: 'left',
     body: ['Paragraph about photography.'],
   },
