@@ -10,5 +10,5 @@ npm install
 npm run dev
 ```
 
-Custom domain: not chosen yet. When it is, add `public/CNAME` with the
-domain and point DNS at GitHub Pages (see the mccomiskey.dev records).
+Custom domain: brigidcarney.com (`public/CNAME`). DNS lives in
+`dns.txt`, same GitHub Pages records as mccomiskey.dev.
