@@ -44,7 +44,6 @@ function Contact() {
     <section id="contact" className="mx-auto max-w-5xl space-y-6 px-6 py-20 text-sm sm:px-12">
       <h2 className="text-4xl text-ink sm:text-5xl">get in touch</h2>
       <p>{site.location}</p>
-      <p><a href={`tel:${site.phone}`}>{site.phone}</a></p>
       <SocialIcons />
     </section>
   )

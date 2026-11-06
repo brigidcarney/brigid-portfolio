@@ -6,7 +6,6 @@ export const site = {
   tagline: 'free-spirited & open-minded creative soul',
   location: 'baltimore, md',
   email: 'brigid@brigidcarney.com',
-  phone: '410-262-0844',
   linkedin: 'https://www.linkedin.com/in/brigidcarney/',
   instagram: '',
   resume: '',

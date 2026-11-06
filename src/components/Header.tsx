@@ -1,4 +1,3 @@
-import { site } from '@/data/site'
 import { Link, type Route } from '@/lib/router'
 import { Logo } from './Logo'
 import { SocialIcons } from './SocialIcons'
@@ -32,12 +31,7 @@ export function Header({ route }: { route: Route }) {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-5 text-sm">
-          <a href={`tel:${site.phone}`} className="hidden sm:inline">
-            {site.phone}
-          </a>
-          <SocialIcons />
-        </div>
+        <SocialIcons />
       </div>
     </header>
   )
