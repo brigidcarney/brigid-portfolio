@@ -1,5 +1,5 @@
 // All copy and links live here so content edits never touch components.
-// Empty strings are placeholders: the UI hides links that have no URL yet.
+// Empty strings are placeholders: links stay inert until a URL is set.
 
 export const site = {
   name: 'Brigid Carney',
@@ -8,7 +8,8 @@ export const site = {
   email: 'brigid@brigidcarney.com',
   linkedin: 'https://www.linkedin.com/in/brigidcarney/',
   instagram: '',
-  resume: '',
+  resume:
+    'https://docs.google.com/document/d/1DnCPcjaCbbONx_9eplv7W4GREuVXw-cc3OATlKFTUtM/export?format=pdf',
 }
 
 export type ExperienceSection = {
