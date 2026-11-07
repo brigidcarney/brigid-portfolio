@@ -13,6 +13,10 @@ function current(): Route {
 export function useRoute() {
   const [route, setRoute] = useState<Route>(current)
   useEffect(() => {
+    const clean = current()
+    if (window.location.pathname !== clean && window.location.pathname !== '/') {
+      window.history.replaceState(null, '', clean + window.location.search + window.location.hash)
+    }
     const onPop = () => setRoute(current())
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)
