@@ -38,26 +38,31 @@ Skip this if `gh api repos/NEW_OWNER/brigid-portfolio` already works.
 2. Start the transfer:
    `gh api -X POST repos/mmccomiskey/brigid-portfolio/transfer -f new_owner=NEW_OWNER`
 3. Tell him Brigid must accept it from the email GitHub sends her, then add
-   him as a collaborator with **Admin** access (her repo → Settings →
-   Collaborators). Admin is needed for the Pages steps below. Wait until he
+   him as a collaborator (her repo → Settings → Collaborators). Wait until he
    says both are done, then confirm with
-   `gh api repos/NEW_OWNER/brigid-portfolio --jq .permissions.admin`
-   (should print `true`).
+   `gh api repos/NEW_OWNER/brigid-portfolio --jq .permissions.push`
+   (should print `true`). On a personal-account repo, collaborators can push
+   and run workflows but can't change repo settings, so the Pages steps
+   below need Brigid's own login.
 4. Point this clone at the new home:
    `git remote set-url origin git@github.com:NEW_OWNER/brigid-portfolio.git`
    and check with `git fetch origin`.
 
 ## 2. Set up GitHub Pages on her repo
 
-1. Check whether Pages came across with the transfer:
-   `gh api repos/NEW_OWNER/brigid-portfolio/pages`.
-   - If it returns 404, create it:
-     `gh api -X POST repos/NEW_OWNER/brigid-portfolio/pages -f build_type=workflow`
-   - If `build_type` isn't `workflow`, fix it:
-     `gh api -X PUT repos/NEW_OWNER/brigid-portfolio/pages -f build_type=workflow`
-2. Set the custom domain:
-   `gh api -X PUT repos/NEW_OWNER/brigid-portfolio/pages -f cname=brigidcarney.com`
-3. Run a deploy:
+Pages settings are owner-only, so Brigid does these clicks while signed in
+as herself. Walk her through them one at a time:
+
+1. Her repo → **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Under **Custom domain**, enter `brigidcarney.com` and click **Save**. A
+   DNS warning is expected until step 3 below.
+
+Then check from here (reading works for collaborators):
+`gh api repos/NEW_OWNER/brigid-portfolio/pages --jq '{build_type, cname}'`
+should show `workflow` and `brigidcarney.com`.
+
+4. Run a deploy (collaborators can do this):
    `gh workflow run deploy.yml -R NEW_OWNER/brigid-portfolio`, then watch
    it with `gh run watch -R NEW_OWNER/brigid-portfolio` and report whether it
    went green.
@@ -90,8 +95,9 @@ and `-H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"`. Never echo the token.
 ## 4. Turn on HTTPS
 
 Check `gh api repos/NEW_OWNER/brigid-portfolio/pages --jq .https_certificate.state`.
-Once it says `approved`, run
-`gh api -X PUT repos/NEW_OWNER/brigid-portfolio/pages -F https_enforced=true`.
+Once it says `approved`, ask Brigid to tick **Enforce HTTPS** in her repo →
+Settings → Pages, then confirm with
+`gh api repos/NEW_OWNER/brigid-portfolio/pages --jq .https_enforced`.
 If it isn't approved yet, say that the certificate can take up to an hour
 and that this step can be rerun later.
 
