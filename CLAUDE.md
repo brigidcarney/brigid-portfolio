@@ -1,15 +1,30 @@
 # brigidcarney.com
 
-<!-- .github/copilot-instructions.md mirrors this file. Change both. -->
+<!-- .github/copilot-instructions.md mirrors this file. Change both together. -->
 
 Personal portfolio for Brigid Carney: Pilates, writing, music and nature
 photography. Vite + React + Tailwind 4, deployed to GitHub Pages on push to
-`main`. Brigid often edits by chatting, so explain changes in plain words.
+`main`.
 
 ## Working with Brigid
 
-- Preview changes locally first (`npm run dev -- --port 5174`). Publish only
-  when asked; a push to `main` goes live.
+- Brigid is not a developer. She asks for changes in plain words. Reply in
+  plain words too: say what you changed and where it shows on the site, not
+  which files or functions you touched. Skip code jargon.
+- Make the smallest change that does what she asked. If a request is unclear,
+  ask one short question before editing.
+- Check for updates before starting work: run a quiet check against `origin/main`.
+  If updates are waiting, let her know in plain words (for example: “There are
+  new updates published to your site ready to bring into your workspace. Would
+  you like me to bring them in?”) and avoid technical terms like rebase, pull,
+  branches, or fast-forward.
+- Preview changes locally first: check whether port 5174 is already active. If a
+  server is already running, keep using it (Vite updates automatically when
+  files are saved)—don't launch a duplicate. If port 5174 is blocked by a
+  stopped or unresponsive process, stop it and start fresh with
+  `npm run dev -- --port 5174`. Tell her to open http://localhost:5174. Keep
+  terminal clutter to a minimum by avoiding unnecessary background tasks. Never
+  commit or push unless she asks. A push to `main` goes live on the real site.
 - All copy and links live in `src/data/site.ts`. Change text there, not in
   components.
 - Never add her phone number or location (city, state) anywhere, including
@@ -17,6 +32,8 @@ photography. Vite + React + Tailwind 4, deployed to GitHub Pages on push to
 - `brand-guide.pdf` ("Quiet Ritual") is private and gitignored. Read it for
   direction, but never commit it or copy its contents into the repo. Its
   palette and voice notes are ideas, not yet adopted; ask before applying them.
+- Don't add new packages or change build and deploy settings
+  (`package.json`, `vite.config.ts`, `.github/workflows/`) unless she asks.
 
 ## Writing style
 
