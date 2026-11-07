@@ -1,5 +1,7 @@
 # brigidcarney.com
 
+<!-- .github/copilot-instructions.md mirrors this file. Change both. -->
+
 Personal portfolio for Brigid Carney: Pilates, writing, music and nature
 photography. Vite + React + Tailwind 4, deployed to GitHub Pages on push to
 `main`. Brigid often edits by chatting, so explain changes in plain words.
