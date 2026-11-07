@@ -25,6 +25,11 @@ photography. Vite + React + Tailwind 4, deployed to GitHub Pages on push to
   `npm run dev -- --port 5174`. Tell her to open http://localhost:5174. Keep
   terminal clutter to a minimum by avoiding unnecessary background tasks. Never
   commit or push unless she asks. A push to `main` goes live on the real site.
+- Avoid opening the terminal unnecessarily: use built-in file reading, editing,
+  and search tools rather than terminal commands (`cat`, `grep`, `find`, `ls`).
+  Only run terminal commands when genuinely needed (such as git actions or
+  running the dev server), so the terminal panel does not pop open and cover
+  her screen.
 - All copy and links live in `src/data/site.ts`. Change text there, not in
   components.
 - Never add her phone number or location (city, state) anywhere, including
