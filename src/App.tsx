@@ -1,28 +1,39 @@
 import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Header } from '@/components/Header'
 import { site } from '@/data/site'
-import { useRoute, type Route } from '@/lib/router'
 import { Experience } from '@/pages/Experience'
 import { Home } from '@/pages/Home'
 import { Work } from '@/pages/Work'
 
-const titles: Record<Route, string> = {
+const titles: Record<string, string> = {
   '/': site.name,
   '/experience': `Experience | ${site.name}`,
   '/work': `Work | ${site.name}`,
 }
 
-function App() {
-  const route = useRoute()
-  useEffect(() => { document.title = titles[route] }, [route])
+function PageTracker() {
+  const { pathname } = useLocation()
+  
+  useEffect(() => {
+    document.title = titles[pathname] || site.name
+    window.scrollTo(0, 0)
+  }, [pathname])
+  
+  return null
+}
 
+function App() {
   return (
     <div className="mx-auto min-h-svh max-w-6xl bg-cream shadow-[0_0_24px_rgba(0,0,0,0.08)]">
-      <Header route={route} />
+      <PageTracker />
+      <Header />
       <main>
-        {route === '/' && <Home />}
-        {route === '/experience' && <Experience />}
-        {route === '/work' && <Work />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/work" element={<Work />} />
+        </Routes>
       </main>
       <footer className="px-6 py-10 text-center text-xs text-ink/60">
         © {new Date().getFullYear()} {site.name}

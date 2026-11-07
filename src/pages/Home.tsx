@@ -1,5 +1,5 @@
 import { site } from '@/data/site'
-import { Link } from '@/lib/router'
+import { Link } from 'react-router-dom'
 import { SocialIcons } from '@/components/SocialIcons'
 import portrait from '@/assets/portrait.jpg'
 
