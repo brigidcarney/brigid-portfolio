@@ -1,9 +1,26 @@
-import { projects, type Project } from '@/data/site'
+import { projects, site, type Project } from '@/data/site'
+
+const ctaClass = 'inline-block border border-ink/20 px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-cream'
 
 export function Work() {
   return (
     <>
-      {projects.map((p) => <ProjectBlock key={p.title} project={p} />)}
+      <section className="px-6 py-16 text-center sm:py-24">
+        <h1 className="text-5xl text-ink">my work</h1>
+        <p className="mt-4 text-lg text-ink/80">
+          explore the full scope of my portfolio
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          {site.resume ? (
+            <a href={site.resume} target="_blank" rel="noreferrer" className={ctaClass}>
+              see resume
+            </a>
+          ) : (
+            <span className={ctaClass}>see resume</span>
+          )}
+        </div>
+      </section>
+      {projects.map((p, i) => <ProjectBlock key={i} project={p} />)}
     </>
   )
 }
