@@ -62,7 +62,9 @@ Don't change any code during setup.
 
 ## 7. Start the preview
 
-Run `npm run dev -- --port 5174` and leave it running. Then run
+Run `npm run dev -- --port 5174 --strictPort` and leave it running. If
+port 5174 is busy, stop the old one with `lsof -ti tcp:5174 | xargs kill`
+and try again. Then run
 `open http://localhost:5174` so the site opens in her browser. Ask her to
 confirm she can see her site.
 
