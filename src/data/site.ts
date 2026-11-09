@@ -61,6 +61,7 @@ export const experience: ExperienceSection[] = [
       'With my Nikon D5600 and a few simple starter lenses, I’ve gathered every bit of magic I’ve come across. Flowers are my usual muse, but sunlight moving through leaves, or a mountain landscape that takes my breath away, remind me to never stop seeing.',
       'I call my camera my third eye. My photography is guided by intuition. I don’t know much about aperture or ISO, and I don’t mind. I follow my gut and photograph what makes my heart happy. Maybe one day I’ll collect more lenses and explore the technical side, but for now, this is a practice full of love.',
     ],
+    cta: { label: 'see gallery', href: '' },
   },
 ]
 
