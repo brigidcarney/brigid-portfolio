@@ -62,6 +62,7 @@ function ProjectBlock({ project }: { project: Project }) {
 function Tile({ image }: { image?: Project['images'][number] }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isCentered, setIsCentered] = useState(false)
+  const [scrollMs, setScrollMs] = useState(6000)
   const tileRef = useRef<HTMLDivElement>(null)
 
   // Phones can't hover, so scroll the image while the tile sits mid-screen.
@@ -75,6 +76,12 @@ function Tile({ image }: { image?: Project['images'][number] }) {
     observer.observe(tile)
     return () => observer.disconnect()
   }, [image?.src])
+
+  // Scroll at a steady pace: taller images take longer, never under 6s.
+  function setPaceFromImage(img: HTMLImageElement) {
+    const tileHeights = img.naturalHeight / img.naturalWidth - 1
+    setScrollMs(Math.max(6000, Math.round(tileHeights * 2200)))
+  }
 
   // Fetch the full-size image before the click so the dialog opens fast.
   function preloadFull() {
@@ -106,7 +113,9 @@ function Tile({ image }: { image?: Project['images'][number] }) {
             alt={image.alt}
             loading="lazy"
             decoding="async"
-            className={`h-full w-full object-cover ${isCentered ? 'object-bottom' : 'object-top'} transition-[object-position] duration-[6000ms] ease-in-out group-hover:object-bottom`}
+            onLoad={(e) => setPaceFromImage(e.currentTarget)}
+            style={{ transitionDuration: `${scrollMs}ms` }}
+            className={`h-full w-full object-cover ${isCentered ? 'object-bottom' : 'object-top'} transition-[object-position] ease-in-out group-hover:object-bottom`}
           />
           <div className="pointer-events-none absolute right-3 bottom-3 border border-ink/20 bg-cream/95 p-1.5 text-ink opacity-80 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
             <svg
