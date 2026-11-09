@@ -147,16 +147,6 @@ function Modal({
         <div className="mb-4 flex items-center justify-between border-b border-ink/10 pb-3">
           <p className="text-sm text-ink/80">{image.alt}</p>
           <div className="flex items-center gap-3">
-            {image.pdf && (
-              <a
-                href={image.pdf}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-block border border-ink/20 px-3 py-1.5 text-xs text-ink transition-colors hover:bg-ink hover:text-cream"
-              >
-                open original pdf
-              </a>
-            )}
             <button
               type="button"
               onClick={onClose}
