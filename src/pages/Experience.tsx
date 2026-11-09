@@ -6,7 +6,7 @@ const tones: Record<ExperienceSection['tone'], string> = {
   moss: 'bg-moss',
 }
 
-const ctaClass = 'mt-8 inline-block bg-cream px-6 py-3 text-sm text-ink'
+const ctaClass = 'inline-block bg-cream px-6 py-3 text-sm text-ink'
 
 export function Experience() {
   return (
@@ -30,18 +30,31 @@ export function Experience() {
             </div>
             {/* Shown even before its link exists so the layout is final;
                 it stays inert until the URL is filled in. */}
-            {s.cta && (s.cta.href ? (
-              <a
-                href={s.cta.href}
-                target="_blank"
-                rel="noreferrer"
-                className={ctaClass}
-              >
-                {s.cta.label}
-              </a>
-            ) : (
-              <span className={ctaClass}>{s.cta.label}</span>
-            ))}
+            {(() => {
+              const items = s.ctas ?? (s.cta ? [s.cta] : [])
+              if (items.length === 0) return null
+              return (
+                <div className={`mt-8 flex flex-wrap gap-4 ${s.align === 'right' ? 'sm:justify-end' : ''}`}>
+                  {items.map((cta) =>
+                    cta.href ? (
+                      <a
+                        key={cta.label}
+                        href={cta.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={ctaClass}
+                      >
+                        {cta.label}
+                      </a>
+                    ) : (
+                      <span key={cta.label} className={ctaClass}>
+                        {cta.label}
+                      </span>
+                    )
+                  )}
+                </div>
+              )
+            })()}
           </div>
         </section>
       ))}

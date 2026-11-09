@@ -1,4 +1,4 @@
-import { projects, site, type Project } from '@/data/site'
+import { projects, site, type Project, type ProjectBlock as ProjectBlockData } from '@/data/site'
 
 const ctaClass = 'inline-block border border-ink/20 px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-cream'
 
@@ -28,6 +28,12 @@ export function Work() {
 // Image and description tiles alternate like a checkerboard.
 function ProjectBlock({ project }: { project: Project }) {
   const [first, second] = project.images
+  const defaultDesc =
+    project.description ||
+    'This is your project description. A brief summary helps visitors understand the context and background. Then use the images to showcase the work.'
+  const block1 = project.blocks?.[0] ?? { title: 'project', description: defaultDesc }
+  const block2 = project.blocks?.[1] ?? { title: 'project', description: defaultDesc }
+
   return (
     <section className="mx-auto max-w-5xl px-6 pb-20 sm:px-12">
       <div className="py-16 text-center">
@@ -35,10 +41,18 @@ function ProjectBlock({ project }: { project: Project }) {
         <p className="mt-6 text-lg text-ink/90">{project.subtitle}</p>
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
-        <Tile image={first} />
-        <Description project={project} />
-        <Description project={project} className="hidden sm:flex" />
-        <Tile image={second} />
+        <div className="order-1">
+          <Tile image={first} />
+        </div>
+        <div className="order-2">
+          <Description block={block1} />
+        </div>
+        <div className="order-4 sm:order-3">
+          <Description block={block2} />
+        </div>
+        <div className="order-3 sm:order-4">
+          <Tile image={second} />
+        </div>
       </div>
     </section>
   )
@@ -58,16 +72,35 @@ function Tile({ image }: { image?: Project['images'][number] }) {
   )
 }
 
-function Description({ project, className = '' }: {
-  project: Project
+function Description({ block, className = '' }: {
+  block: ProjectBlockData
   className?: string
 }) {
+  const cta = block.cta
   return (
     <div
       className={`flex aspect-square flex-col justify-center bg-olive p-8 text-cream ${className}`}
     >
-      <h2 className="text-2xl">Project</h2>
-      <p className="mt-6 text-sm leading-7">{project.description}</p>
+      {block.title && <h2 className="text-2xl">{block.title}</h2>}
+      <p className="mt-6 text-sm leading-7">{block.description}</p>
+      {cta && (
+        <div className="mt-8">
+          {cta.href ? (
+            <a
+              href={cta.href}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block bg-cream px-6 py-3 text-sm text-ink transition-opacity hover:opacity-90"
+            >
+              {cta.label}
+            </a>
+          ) : (
+            <span className="inline-block bg-cream px-6 py-3 text-sm text-ink">
+              {cta.label}
+            </span>
+          )}
+        </div>
+      )}
     </div>
   )
 }
