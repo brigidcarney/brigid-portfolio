@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { projects, site, type Project, type ProjectBlock as ProjectBlockData } from '@/data/site'
 
 const ctaClass = 'inline-block border border-ink/20 px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-cream'
@@ -61,15 +61,38 @@ function ProjectBlock({ project }: { project: Project }) {
 
 function Tile({ image }: { image?: Project['images'][number] }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isCentered, setIsCentered] = useState(false)
+  const tileRef = useRef<HTMLDivElement>(null)
+
+  // Phones can't hover, so scroll the image while the tile sits mid-screen.
+  useEffect(() => {
+    const tile = tileRef.current
+    if (!tile || !window.matchMedia('(hover: none)').matches) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsCentered(entry.isIntersecting),
+      { rootMargin: '-40% 0px -40% 0px' },
+    )
+    observer.observe(tile)
+    return () => observer.disconnect()
+  }, [image?.src])
+
+  // Fetch the full-size image before the click so the dialog opens fast.
+  function preloadFull() {
+    if (image?.fullSrc) new Image().src = image.fullSrc
+  }
 
   if (image?.src) {
     return (
       <>
         <div
+          ref={tileRef}
           role="button"
           tabIndex={0}
           aria-label={`view full size: ${image.alt}`}
           onClick={() => setIsOpen(true)}
+          onMouseEnter={preloadFull}
+          onFocus={preloadFull}
+          onTouchStart={preloadFull}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault()
@@ -81,7 +104,9 @@ function Tile({ image }: { image?: Project['images'][number] }) {
           <img
             src={image.src}
             alt={image.alt}
-            className="h-full w-full object-cover object-top transition-[object-position] duration-[6000ms] ease-in-out group-hover:object-bottom"
+            loading="lazy"
+            decoding="async"
+            className={`h-full w-full object-cover ${isCentered ? 'object-bottom' : 'object-top'} transition-[object-position] duration-[6000ms] ease-in-out group-hover:object-bottom`}
           />
           <div className="pointer-events-none absolute right-3 bottom-3 border border-ink/20 bg-cream/95 p-1.5 text-ink opacity-80 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
             <svg

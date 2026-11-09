@@ -1,9 +1,15 @@
 import fitbitEmailPreview from '@/assets/fitbit-email-preview.jpg'
+import fitbitEmailThumb from '@/assets/fitbit-email-thumb.jpg'
 import fitbitPaidSocialPreview from '@/assets/fitbit-paid-social-preview.jpg'
+import fitbitPaidSocialThumb from '@/assets/fitbit-paid-social-thumb.jpg'
 import goodrxPrintPreview from '@/assets/goodrx-print-preview.jpg'
+import goodrxPrintThumb from '@/assets/goodrx-print-thumb.jpg'
 import goodrxPaidSocialPreview from '@/assets/goodrx-paid-social-preview.jpg'
+import goodrxPaidSocialThumb from '@/assets/goodrx-paid-social-thumb.jpg'
 import jblPortablesPreview from '@/assets/jbl-portables-preview.jpg'
+import jblPortablesThumb from '@/assets/jbl-portables-thumb.jpg'
 import jblTourPro3Preview from '@/assets/jbl-tour-pro-3-preview.jpg'
+import jblTourPro3Thumb from '@/assets/jbl-tour-pro-3-thumb.jpg'
 
 // All copy and links live here so content edits never touch components.
 // Empty strings are placeholders: links stay inert until a URL is set.
@@ -112,12 +118,14 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        src: fitbitEmailPreview,
+        src: fitbitEmailThumb,
+        fullSrc: fitbitEmailPreview,
         alt: 'Google Fitbit - Premium Perks email campaign',
         pdf: '/fitbit-premium-perks-email.pdf',
       },
       {
-        src: fitbitPaidSocialPreview,
+        src: fitbitPaidSocialThumb,
+        fullSrc: fitbitPaidSocialPreview,
         alt: 'Google Fitbit - Mother’s Day paid social campaign',
         pdf: '/fitbit-mothers-day-paid-social.pdf',
       },
@@ -141,12 +149,14 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        src: goodrxPrintPreview,
+        src: goodrxPrintThumb,
+        fullSrc: goodrxPrintPreview,
         alt: 'GoodRx - February Discounts print flyer',
         pdf: '/goodrx-february-discounts-print.pdf',
       },
       {
-        src: goodrxPaidSocialPreview,
+        src: goodrxPaidSocialThumb,
+        fullSrc: goodrxPaidSocialPreview,
         alt: 'GoodRx HCP - Paid social campaign',
         pdf: '/goodrx-hcp-paid-social.pdf',
       },
@@ -169,12 +179,14 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        src: jblPortablesPreview,
+        src: jblPortablesThumb,
+        fullSrc: jblPortablesPreview,
         alt: 'JBL Portables & PartyBox landing page',
         pdf: '/jbl-portables-lp.pdf',
       },
       {
-        src: jblTourPro3Preview,
+        src: jblTourPro3Thumb,
+        fullSrc: jblTourPro3Preview,
         alt: 'JBL Tour Pro 3 & Tour One M3 landing page',
         pdf: '/jbl-tour-pro-3-lp.pdf',
       },
