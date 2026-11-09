@@ -1,6 +1,6 @@
 # brigidcarney.com
 
-<!-- Mirrors CLAUDE.md at the repo root. Change both together. -->
+<!-- .github/copilot-instructions.md mirrors this file. Change both together. -->
 
 Personal portfolio for Brigid Carney: Pilates, writing, music and nature
 photography. Vite + React + Tailwind 4, deployed to GitHub Pages on push to
@@ -23,6 +23,8 @@ photography. Vite + React + Tailwind 4, deployed to GitHub Pages on push to
   files are saved)—don't launch a duplicate. If port 5174 is blocked by a
   stopped or unresponsive process, stop it and start fresh with
   `npm run dev -- --port 5174`. Tell her to open http://localhost:5174. Keep
+- When asked to generate a thumbnail from a PDF, always prompt me to clarify whether the thumbnail should include the entire PDF (all pages stacked, like the GoodRx HCP Paid Social example) or just a single specific page/crop (like the Fitbit examples). Also, explicitly confirm that the PDF should be pulled from the `~/Documents/` directory.
+
   terminal clutter to a minimum by avoiding unnecessary background tasks. Never
   commit or push unless she asks. A push to `main` goes live on the real site.
 - Avoid opening the terminal unnecessarily: use built-in file reading, editing,

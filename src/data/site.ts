@@ -1,3 +1,10 @@
+import fitbitEmailPreview from '@/assets/fitbit-email-preview.jpg'
+import fitbitPaidSocialPreview from '@/assets/fitbit-paid-social-preview.jpg'
+import goodrxPrintPreview from '@/assets/goodrx-print-preview.jpg'
+import goodrxPaidSocialPreview from '@/assets/goodrx-paid-social-preview.jpg'
+import jblPortablesPreview from '@/assets/jbl-portables-preview.jpg'
+import jblTourPro3Preview from '@/assets/jbl-tour-pro-3-preview.jpg'
+
 // All copy and links live here so content edits never touch components.
 // Empty strings are placeholders: links stay inert until a URL is set.
 
@@ -5,6 +12,7 @@ export const site = {
   name: 'Brigid Carney',
   tagline: 'pilates instructor, writer, violinist & photographer',
   experienceTagline: 'a free-spirited soul, rooted in ritual',
+  workImageHint: 'hover over the image to see the full creative',
   email: 'brigid@brigidcarney.com',
   linkedin: 'https://www.linkedin.com/in/brigidcarney/',
   instagram: '',
@@ -69,6 +77,7 @@ export type ProjectBlock = {
   title?: string
   description: string
   cta?: { label: string; href: string }
+  hideHint?: boolean
 }
 
 export type Project = {
@@ -76,7 +85,12 @@ export type Project = {
   subtitle: string
   description?: string
   blocks?: ProjectBlock[]
-  images: { src: string; alt: string }[]
+  images: {
+    src: string
+    alt: string
+    fullSrc?: string
+    pdf?: string
+  }[]
 }
 
 export const projects: Project[] = [
@@ -87,19 +101,26 @@ export const projects: Project[] = [
       {
         title: 'emails',
         description:
-          'For 7 years, Google Fitbit emails were my constant. From a full year of holiday campaigns to new product launches, I wrote copy that was clear, concise and brought results. My craft focus on opening with intention and making the complex feel effortless to read.',
-        cta: { label: 'see work', href: '' },
+          'For 7 years, Google Fitbit emails were my constant. From a full year of holiday campaigns to new product launches, I wrote copy that was clear, concise and brought results. My craft focuses on opening with intention and making the complex feel effortless to read.',
+        cta: { label: 'see more', href: '/fitbit-premium-perks-email.pdf' },
       },
       {
         title: 'paid social',
         description:
           'Alongside the thousands of emails I wrote each year, I also wrote copy for Google Fitbit paid social ads. Carrying the campaign tone from email into social was a fun task. I love trimming copy down to what matters, and paid social was the ideal place for it: short, steady words that stood out amid the noise.',
-        cta: { label: 'see work', href: '' },
       },
     ],
     images: [
-      { src: '', alt: 'Homepage hero' },
-      { src: '', alt: 'Product page' },
+      {
+        src: fitbitEmailPreview,
+        alt: 'Google Fitbit - Premium Perks email campaign',
+        pdf: '/fitbit-premium-perks-email.pdf',
+      },
+      {
+        src: fitbitPaidSocialPreview,
+        alt: 'Google Fitbit - Mother’s Day paid social campaign',
+        pdf: '/fitbit-mothers-day-paid-social.pdf',
+      },
     ],
   },
   {
@@ -110,18 +131,25 @@ export const projects: Project[] = [
         title: 'print',
         description:
           'GoodRx was my first time writing for print. Adapting to a new craft was a rewarding lesson, one with tighter character counts and competing hierarchies to balance. From Medicare flyers to PCP drug list pamphlets with a touch of personality, I grew into myself through work that served a bigger purpose.',
-        cta: { label: 'see work', href: '' },
+        cta: { label: 'see more', href: '/goodrx-february-discounts-print.pdf' },
       },
       {
         title: 'paid social',
         description:
           'Bringing my Google Fitbit paid social experience into the GoodRx brand tone was a rewarding experience. The ads were even shorter, and the required drug terminology took up nearly all the space. Every word had to earn its place. It was a great challenge, and it sharpened my concise writing style.',
-        cta: { label: 'see work', href: '' },
       },
     ],
     images: [
-      { src: '', alt: 'Homepage hero' },
-      { src: '', alt: 'Product page' },
+      {
+        src: goodrxPrintPreview,
+        alt: 'GoodRx - February Discounts print flyer',
+        pdf: '/goodrx-february-discounts-print.pdf',
+      },
+      {
+        src: goodrxPaidSocialPreview,
+        alt: 'GoodRx HCP - Paid social campaign',
+        pdf: '/goodrx-hcp-paid-social.pdf',
+      },
     ],
   },
   {
@@ -132,18 +160,24 @@ export const projects: Project[] = [
         title: 'JBL Portables & PartyBox landing pages',
         description:
           '3 product launches in 2 phases. All 3 with their own loud and proud personalities. It was such a fun challenge to write for multiple big new products, and to adjust the landing page from phase 1 with 2 devices to phase 2 with all 3.',
-        cta: { label: 'see work', href: '' },
       },
       {
         title: 'JBL Tour Pro 3 & Tour One M3 landing page',
         description:
-          'This was my 2nd project writing for JBL, with a little spice added. Because I joined early in product development, I had more freedom to write and to help shape the brand voice for these 2 products. Staying flexible and talking things through more deeply made the work even more meaningful.',
-        cta: { label: 'see work', href: '' },
+          'For my 2nd JBL project, I got the chance to help define and develop the tone for each new product—which made the work even more meaningful.',
       },
     ],
     images: [
-      { src: '', alt: 'Homepage hero' },
-      { src: '', alt: 'Product page' },
+      {
+        src: jblPortablesPreview,
+        alt: 'JBL Portables & PartyBox landing page',
+        pdf: '/jbl-portables-lp.pdf',
+      },
+      {
+        src: jblTourPro3Preview,
+        alt: 'JBL Tour Pro 3 & Tour One M3 landing page',
+        pdf: '/jbl-tour-pro-3-lp.pdf',
+      },
     ],
   },
 ]

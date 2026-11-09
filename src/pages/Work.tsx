@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { projects, site, type Project, type ProjectBlock as ProjectBlockData } from '@/data/site'
 
 const ctaClass = 'inline-block border border-ink/20 px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-cream'
@@ -59,15 +60,132 @@ function ProjectBlock({ project }: { project: Project }) {
 }
 
 function Tile({ image }: { image?: Project['images'][number] }) {
+  const [isOpen, setIsOpen] = useState(false)
+
   if (image?.src) {
     return (
-      <img src={image.src} alt={image.alt}
-        className="aspect-square w-full object-cover" />
+      <>
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label={`view full size: ${image.alt}`}
+          onClick={() => setIsOpen(true)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              setIsOpen(true)
+            }
+          }}
+          className="group relative aspect-square w-full cursor-pointer overflow-hidden bg-white/60 focus:outline-hidden focus:ring-1 focus:ring-olive"
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            className="h-full w-full object-cover object-top transition-[object-position] duration-[6000ms] ease-in-out group-hover:object-bottom"
+          />
+          <div className="pointer-events-none absolute right-3 bottom-3 border border-ink/20 bg-cream/95 p-1.5 text-ink opacity-80 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
+            <svg
+              className="h-3.5 w-3.5"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M10 2h4v4M6 14H2v-4M14 2L9.5 6.5M2 14l4.5-4.5" />
+            </svg>
+          </div>
+        </div>
+
+        {isOpen && (
+          <Modal image={image} onClose={() => setIsOpen(false)} />
+        )}
+      </>
     )
   }
   return (
     <div className="flex aspect-square items-center justify-center bg-white/60 text-sm text-ink/50">
       {image?.alt ?? 'image'}
+    </div>
+  )
+}
+
+function Modal({
+  image,
+  onClose,
+}: {
+  image: NonNullable<Project['images'][number]>
+  onClose: () => void
+}) {
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = originalOverflow
+    }
+  }, [onClose])
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={image.alt}
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-4 sm:p-8"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative flex max-h-[90vh] max-w-4xl w-full flex-col bg-cream p-4 sm:p-8"
+      >
+        <div className="mb-4 flex items-center justify-between border-b border-ink/10 pb-3">
+          <p className="text-sm text-ink/80">{image.alt}</p>
+          <div className="flex items-center gap-3">
+            {image.pdf && (
+              <a
+                href={image.pdf}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block border border-ink/20 px-3 py-1.5 text-xs text-ink transition-colors hover:bg-ink hover:text-cream"
+              >
+                open original pdf
+              </a>
+            )}
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="close"
+              className="cursor-pointer border border-ink/20 p-1.5 text-ink transition-colors hover:bg-ink hover:text-cream"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.25"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 3l10 10M13 3L3 13" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="overflow-y-auto">
+          <img
+            src={image.fullSrc || image.src}
+            alt={image.alt}
+            className="mx-auto h-auto max-w-full"
+          />
+        </div>
+      </div>
     </div>
   )
 }
@@ -83,6 +201,11 @@ function Description({ block, className = '' }: {
     >
       {block.title && <h2 className="text-2xl">{block.title}</h2>}
       <p className="mt-6 text-sm leading-7">{block.description}</p>
+      {!block.hideHint && (
+        <p className="mt-4 text-xs italic text-cream/75">
+          {site.workImageHint}
+        </p>
+      )}
       {cta && (
         <div className="mt-8">
           {cta.href ? (
