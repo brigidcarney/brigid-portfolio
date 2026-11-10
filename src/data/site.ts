@@ -106,7 +106,7 @@ export const projects: Project[] = [
         title: 'emails',
         description:
           'For 7 years, Google Fitbit emails were my constant. From holiday campaigns to new product launches, I wrote copy that was clear, concise and brought results. My craft focuses on opening with intention and making the complex feel effortless to read.',
-        cta: { label: 'see more', href: '/fitbit-premium-perks-email.pdf' },
+        cta: { label: 'see more', href: 'https://drive.google.com/drive/folders/1RFZ7pSmfDsnuqniueX9mDRVHLd3nx44y?usp=sharing' },
       },
       {
         title: 'paid social',
