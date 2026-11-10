@@ -9,7 +9,7 @@ export function Work() {
       <section className="px-6 py-16 text-center sm:py-24">
         <h1 className="text-5xl text-ink">my work</h1>
         <p className="mt-4 text-lg text-ink/80">
-          explore the full scope of my portfolio
+          explore a comprehensive range of my writing portfolio
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           {site.resume ? (
@@ -226,7 +226,7 @@ function Description({ block, className = '' }: {
       {block.title && <h2 className="text-2xl">{block.title}</h2>}
       <p className="mt-6 text-sm leading-7">{block.description}</p>
       {!block.hideHint && (
-        <p className="mt-4 text-xs italic text-cream/75">
+        <p className="mt-4 hidden text-xs italic text-cream/75 lg:block">
           {site.workImageHint}
         </p>
       )}

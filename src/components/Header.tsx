@@ -4,8 +4,8 @@ import { SocialIcons } from './SocialIcons'
 
 const nav: { to: string; label: string }[] = [
   { to: '/', label: 'home' },
-  { to: '/experience', label: 'experience' },
-  { to: '/work', label: 'work' },
+  { to: '/experience', label: 'bio' },
+  { to: '/work', label: 'copywriting' },
 ]
 
 export function Header() {

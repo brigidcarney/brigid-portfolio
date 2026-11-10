@@ -8,8 +8,8 @@ import { Work } from '@/pages/Work'
 
 const titles: Record<string, string> = {
   '/': site.name,
-  '/experience': `Experience | ${site.name}`,
-  '/work': `Work | ${site.name}`,
+  '/experience': `Bio | ${site.name}`,
+  '/work': `Copywriting | ${site.name}`,
 }
 
 function PageTracker() {

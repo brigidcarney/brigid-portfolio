@@ -12,7 +12,7 @@ export function Experience() {
   return (
     <>
       <section className="px-6 py-16 text-center sm:pb-28">
-        <h1 className="text-5xl text-ink">my experience</h1>
+        <h1 className="text-5xl text-ink">about me</h1>
         <p className="mt-3 text-lg text-balance text-ink/80">{site.experienceTagline}</p>
       </section>
       {experience.map((s) => (
