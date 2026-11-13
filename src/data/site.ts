@@ -167,12 +167,12 @@ export const projects: Project[] = [
       {
         title: 'JBL Portables & PartyBox landing pages',
         description:
-          '3 product launches in 2 phases. All 3 with their own loud and proud personalities. It was such a fun challenge to write for multiple big new products, and to adjust the landing page from phase 1 with 2 devices to phase 2 with all 3.',
+          '3 product launches in 2 phases. All 3 with their own loud and proud personalities. For my 2nd JBL project, I got the chance to help define and develop the tone for each new product—which made the work even more meaningful.',
       },
       {
         title: 'JBL Tour Pro 3 & Tour One M3 landing page',
         description:
-          'For my 2nd JBL project, I got the chance to help define and develop the tone for each new product—which made the work even more meaningful.',
+          'This being my 1st JBL project, I got to explore the vibrant brand voice and shape it for 2 big product launches. It was a fun challenge to write with a bit of attitude and rhythm while keeping the copy succinct for easy scrolling.',
       },
     ],
     images: [
